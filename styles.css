@@ -1,0 +1,935 @@
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.7);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+  border-radius: 4px;
+  border: 2px solid rgba(31, 41, 55, 0.7);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Smooth transitions */
+.hidden {
+  display: none !important;
+}
+
+/* Body background */
+body {
+  background: linear-gradient(120deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%), url('https://media.npr.org/assets/img/2025/05/09/gettyimages-2150540154_wide-6a4a14696a8e25afb4899ae7e5b25a6dd82ac9d9.jpg') center center / cover no-repeat fixed;
+  min-height: 100vh;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  color: #222;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(217deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0) 70.71%),
+    linear-gradient(127deg, rgba(168, 85, 247, .1), rgba(168, 85, 247, 0) 70.71%),
+    linear-gradient(336deg, rgba(99, 102, 241, .1), rgba(99, 102, 241, 0) 70.71%);
+  z-index: -1;
+  animation: gradientShift 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Input focus styles */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  border-color: #3b82f6;
+}
+
+input,
+textarea {
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  caret-color: white !important;
+  color: white !important;
+  background: rgba(17, 24, 39, 0.8) !important;
+  border: 2px solid rgba(75, 85, 99, 0.5) !important;
+}
+
+input::placeholder {
+  color: rgba(156, 163, 175, 0.7) !important;
+}
+
+/* Mobile input adjustments */
+@media (max-width: 640px) {
+  input[type="date"] {
+    font-size: 16px;
+    /* Prevents iOS zoom */
+  }
+
+  input {
+    font-size: 16px;
+    /* Prevents iOS zoom */
+  }
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Card hover effects */
+#debtsList>div {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media (hover: hover) {
+  #debtsList>div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+  }
+}
+
+/* Custom gradients */
+.gradient-bg {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(167, 139, 250, 0.8));
+  transition: all 0.3s ease;
+  background-size: 200% 200%;
+  animation: gradientFlow 5s ease infinite;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.gradient-bg:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(167, 139, 250, 0.9));
+}
+
+.gradient-bg-success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.8));
+  transition: all 0.3s ease;
+  background-size: 200% 200%;
+  animation: gradientFlow 5s ease infinite;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.gradient-bg-success:hover {
+  opacity: 0.9;
+}
+
+.gradient-bg-danger {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8));
+  transition: all 0.3s ease;
+  background-size: 200% 200%;
+  animation: gradientFlow 5s ease infinite;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.gradient-bg-danger:hover {
+  opacity: 0.9;
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+/* Form styling */
+.form-container {
+  background: rgba(31, 41, 55, 0.7);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, #4f46e5, #3b82f6);
+}
+
+/* Login page background */
+.login-bg {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0), rgba(59, 131, 246, 0.506));
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: gradientFlow 5s ease infinite;
+}
+
+.login-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 40%);
+  animation: lightShift 10s linear infinite;
+}
+
+/* Modal animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content {
+  animation: modalFadeIn 0.3s ease-out;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Navigation bar */
+.nav-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  background: linear-gradient(90deg, rgba(31, 41, 55, 0.95), rgba(17, 24, 39, 0.95)) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.nav-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  animation: lightShift 10s linear infinite;
+}
+
+/* Status badges */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.status-badge.paid {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6EE7B7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-badge.unpaid {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #FCA5A5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-badge.deleted {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-badge.deleted i {
+  color: #EF4444;
+}
+
+/* Card content */
+.debt-card {
+  background: rgba(31, 41, 55, 0.7) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(147, 51, 234, 0.3) !important;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Responsive grid for debt info */
+@media (min-width: 640px) {
+  .debt-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .debt-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .debt-card {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Responsive text sizes */
+@media (max-width: 639px) {
+  .debt-card h3 {
+    font-size: 1rem;
+  }
+
+  .debt-card .text-sm {
+    font-size: 0.875rem;
+  }
+
+  .debt-card button {
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Improve button layout on mobile */
+@media (max-width: 639px) {
+  .debt-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .debt-actions button {
+    flex: 1;
+  }
+}
+
+/* Add transition for blur effect */
+#debtsList .debt-card {
+  transition: all 0.4s ease, filter 0.4s ease;
+}
+
+/* Remove the list hover effect */
+#debtsList:hover .debt-card {
+  filter: none;
+  opacity: 1;
+}
+
+/* Add hover effect to individual cards */
+#debtsList .debt-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.3);
+  border: 3px solid rgba(147, 51, 234, 0.6) !important;
+  background: rgba(31, 41, 55, 0.9) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  filter: blur(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Add blur effect to siblings when a card is hovered */
+#debtsList .debt-card:hover~.debt-card {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+/* Add blur effect to previous siblings */
+#debtsList .debt-card:has(~ .debt-card:hover) {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+.debt-card:hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg,
+      rgba(147, 51, 234, 0.15),
+      rgba(168, 85, 247, 0.15),
+      rgba(192, 132, 252, 0.15));
+  border-radius: 0.75rem;
+  z-index: 0;
+}
+
+.debt-card:hover::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg,
+      rgba(147, 51, 234, 0.5),
+      rgba(168, 85, 247, 0.5),
+      rgba(192, 132, 252, 0.5));
+  border-radius: 0.75rem;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.debt-card.overdue {
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.15), rgba(31, 41, 55, 0.7)) !important;
+  border: 3px solid rgba(239, 68, 68, 0.4) !important;
+}
+
+.debt-card.overdue:hover {
+  border: 3px solid rgba(239, 68, 68, 0.7) !important;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+}
+
+.debt-card.paid {
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.15), rgba(31, 41, 55, 0.7)) !important;
+  border: 3px solid rgba(16, 185, 129, 0.4) !important;
+}
+
+.debt-card.paid:hover {
+  border: 3px solid rgba(16, 185, 129, 0.7) !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.debt-card>div {
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(31, 41, 55, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Apply the same effect to deleted debts list */
+#deletedDebtsList .debt-card {
+  transition: all 0.4s ease, filter 0.4s ease;
+}
+
+/* Remove the list hover effect for deleted debts */
+#deletedDebtsList:hover .debt-card {
+  filter: none;
+  opacity: 1;
+}
+
+/* Add hover effect to individual deleted cards */
+#deletedDebtsList .debt-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+  border: 3px solid rgba(239, 68, 68, 0.6) !important;
+  background: rgba(31, 41, 55, 0.9) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  filter: blur(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Add blur effect to siblings when a deleted card is hovered */
+#deletedDebtsList .debt-card:hover~.debt-card {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+/* Add blur effect to previous siblings in deleted list */
+#deletedDebtsList .debt-card:has(~ .debt-card:hover) {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+/* Style for deleted debt cards */
+#deletedDebtsList .debt-card {
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.15), rgba(31, 41, 55, 0.7)) !important;
+  border: 3px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+#deletedDebtsList .debt-card:hover {
+  border: 3px solid rgba(239, 68, 68, 0.6) !important;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+}
+
+.debt-card-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.debt-card-body {
+  padding: 1rem;
+}
+
+/* Search input */
+.search-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.search-container input {
+  padding-left: 2.5rem;
+  background: rgba(17, 24, 39, 0.8) !important;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(75, 85, 99, 0.5) !important;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  color: white !important;
+}
+
+.search-container input:focus {
+  border-color: rgba(99, 102, 241, 0.8) !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+  background: rgba(17, 24, 39, 0.9) !important;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+
+/* Statistics cards */
+.stat-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(31, 38, 135, 0.15);
+}
+
+.stat-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.stat-card-mini {
+  background: rgba(31, 41, 55, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+@media (hover: hover) {
+  .stat-card-mini:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="date"] {
+  transition: all 0.3s ease;
+  border-color: #e2e8f0;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+input[type="text"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="number"]::placeholder,
+input[type="date"]::placeholder {
+  color: #a0aec0;
+}
+
+/* Keyboard shortcut hints */
+[data-shortcut]::after {
+  content: attr(data-shortcut);
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-left: 0.5rem;
+}
+
+/* Focus styles */
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .debt-card {
+    font-size: 0.875rem;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+  }
+
+  #debtsList {
+    margin-right: -0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .form-container {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0;
+  }
+
+  button {
+    display: none !important;
+  }
+
+  .nav-gradient {
+    background: none !important;
+    color: #1a202c !important;
+    box-shadow: none !important;
+  }
+
+  .glass-effect,
+  .backdrop-filter {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: white !important;
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Input focus and hover effects */
+input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+}
+
+.gradient-bg-success {
+  background: linear-gradient(135deg, #059669, #10b981);
+}
+
+/* Transition effects */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Shadow effects */
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effects for form container */
+.form-container:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Input group hover effects */
+.group:hover input {
+  border-color: #4f46e5;
+}
+
+.group:hover i {
+  color: #4f46e5;
+}
+
+/* Input styles with gradient */
+.form-container input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.form-container input:focus {
+  border-color: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.form-container .group {
+  position: relative;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  padding: 2px;
+  /* This creates the gradient border */
+}
+
+.form-container .group::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(59, 130, 246, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.form-container .group:hover::before {
+  opacity: 1;
+}
+
+.form-container .group input {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 0.75rem;
+  width: 100%;
+  backdrop-filter: blur(4px);
+}
+
+.form-container .group:hover input {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.form-container .group input:focus {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Special styling for date inputs */
+.form-container input[type="date"] {
+  color: #4B5563;
+  font-family: inherit;
+}
+
+.form-container input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234F46E5' viewBox='0 0 16 16'%3E%3Cpath d='M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z'/%3E%3Cpath d='M4.5 5h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5z'/%3E%3C/svg%3E");
+  cursor: pointer;
+}
+
+/* Search input special styling */
+.search-container {
+  position: relative;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  padding: 2px;
+}
+
+.search-container input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 0.75rem;
+  padding-left: 2.5rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.search-container:hover input {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.search-container input:focus {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Edit modal input styling */
+#editModal .modal-content input {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#editModal .modal-content .group {
+  position: relative;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  padding: 2px;
+}
+
+#editModal .modal-content .group input {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 0.75rem;
+  width: 100%;
+  backdrop-filter: blur(4px);
+}
+
+#editModal .modal-content .group:hover input {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+#editModal .modal-content .group input:focus {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Placeholder styling */
+.form-container input::placeholder,
+#editModal input::placeholder,
+.search-container input::placeholder {
+  color: #9CA3AF;
+  opacity: 0.8;
+}
+
+.form-container input:focus::placeholder,
+#editModal input:focus::placeholder,
+.search-container input:focus::placeholder {
+  opacity: 0.6;
+}
+
+/* Add smooth transition for all interactive elements */
+.form-container input,
+#editModal input,
+.search-container input,
+button {
+  transition: all 0.3s ease;
+}
+
+/* Error message styles */
+.text-red-500 {
+  background-color: white;
+  color: #EF4444;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #FEE2E2;
+  display: flex;
+  align-items: center;
+}
+
+.text-red-500::before {
+  content: '⚠️';
+  margin-right: 0.5rem;
+}
+
+/* Input error state */
+.border-red-500 {
+  border-color: #EF4444 !important;
+  background-color: #FEF2F2 !important;
+}
+
+.border-red-500:focus {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Input icons */
+.input-icon {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(167, 139, 250, 0.8));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#debtsList {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow: visible;
+  max-height: none;
+}
+
+/* Also update deleted debts list */
+#deletedDebtsList {
+  overflow: visible;
+  max-height: none;
+  padding-right: 2rem;
+}

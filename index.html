@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qarz Daftari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .modern-glass {
+      background: rgba(0, 0, 0, 0.238);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(233, 233, 233, 0.22);
+    }
+
+    .modern-input {
+      background: rgba(55, 65, 81, 0.9);
+      border: none;
+      color: rgb(255, 255, 255);
+      transition: all 0.3s ease;
+      padding-left: 40px !important;
+    }
+
+    .modern-input:focus {
+      background: rgb(116, 133, 161);
+      outline: none;
+    }
+
+    .modern-button {
+      background: rgb(59, 130, 246);
+      transition: all 0.3s ease;
+    }
+
+    .modern-button:hover {
+      background: rgb(37, 99, 235);
+      transform: translateY(-1px);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .logo-shine {
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .modern-glass {
+      background: rgba(0, 0, 0, 0.238);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(233, 233, 233, 0.22);
+    }
+
+    .modern-input {
+      background: rgba(55, 65, 81, 0.9);
+      border: none;
+      color: rgb(255, 255, 255);
+      transition: all 0.3s ease;
+    }
+
+    .modern-input:focus {
+      background: rgb(116, 133, 161);
+      outline: none;
+    }
+
+    .modern-button {
+      background: rgb(59, 130, 246);
+      transition: all 0.3s ease;
+    }
+
+    .modern-button:hover {
+      background: rgb(37, 99, 235);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Login Form -->
+  <div id="loginPage" class="flex items-center justify-center min-h-screen">
+    <div class="modern-glass w-full max-w-sm p-8">
+      <div class="text-center mb-8">
+        <div class="inline-block p-4 rounded-full bg-white/10 backdrop-blur-lg mb-4">
+          <i class="fas fa-wallet text-4xl text-white logo-shine"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-white mb-2">Qarz Daftari</h2>
+        <p class="text-white/70 text-sm">Tizimga kirish uchun ma'lumotlarni kiriting</p>
+      </div>
+
+      <form id="loginForm" class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-white/90 mb-2">
+            <i class="fas fa-user mr-2"></i>Login
+          </label>
+          <div class="relative">
+            <i class="fas fa-user input-icon"></i>
+            <input type="text" id="username" class="modern-input w-full p-3 rounded-lg"
+              placeholder="Loginingizni kiriting" required>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-white/90 mb-2">
+            <i class="fas fa-lock mr-2"></i>Parol
+          </label>
+          <div class="relative">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" class="modern-input w-full p-3 rounded-lg"
+              placeholder="Parolingizni kiriting" required>
+          </div>
+        </div>
+
+        <button type="submit"
+          class="modern-button w-full text-white py-3 rounded-lg text-sm font-medium flex items-center justify-center gap-2 mt-8">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Tizimga kirish</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main page -->
+  <div id="mainPage" class="hidden min-h-screen">
+    <nav class="nav-gradient text-white p-3 sm:p-4 sticky top-0 z-10">
+      <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
+        <h1 class="text-xl sm:text-2xl font-bold">Qarz Daftari</h1>
+        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-left">
+          <div class="text-right order-2 sm:order-1">
+            <div id="currentDateTime" class="flex flex-col sm:flex-row items-center text-base sm:text-lg gap-2">
+              <span id="currentDate" class="whitespace-nowrap"></span>
+              <span id="currentTime" class="whitespace-nowrap"></span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 sm:gap-4 order-1 sm:order-2">
+            <span id="currentUserName" class="text-base sm:text-lg">
+              <span></span>
+            </span>
+            <button onclick="logout()"
+              class="gradient-bg-danger px-4 sm:px-6 py-1.5 sm:py-2 rounded-xl text-sm sm:text-base">
+              Chiqish
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container mx-auto p-3 sm:p-4">
+      <!-- Statistics Panel -->
+      <div class="form-container p-4 sm:p-6 mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center mb-4">
+          <span class="gradient-bg text-white p-2 rounded-lg mr-3">
+            <i class="fas fa-chart-line"></i>
+          </span>
+          Statistika
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div class="stat-card-mini">
+            <i class="fas fa-users text-indigo-400 text-lg sm:text-xl mr-2"></i>
+            <div>
+              <p class="text-xs sm:text-sm text-gray-400">Qarzdorlar</p>
+              <h3 id="totalDebtors" class="text-lg sm:text-xl font-bold text-white">0</h3>
+            </div>
+          </div>
+          <div class="stat-card-mini">
+            <i class="fas fa-money-bill text-green-400 text-lg sm:text-xl mr-2"></i>
+            <div>
+              <p class="text-xs sm:text-sm text-gray-400">Jami qarz</p>
+              <h3 id="totalDebt" class="text-lg sm:text-xl font-bold text-white">0</h3>
+            </div>
+          </div>
+          <div class="stat-card-mini">
+            <i class="fas fa-clock text-yellow-400 text-lg sm:text-xl mr-2"></i>
+            <div>
+              <p class="text-xs sm:text-sm text-gray-400">To'lanmagan</p>
+              <h3 id="unpaidDebt" class="text-lg sm:text-xl font-bold text-white">0</h3>
+            </div>
+          </div>
+          <div class="stat-card-mini">
+            <i class="fas fa-exclamation-circle text-red-400 text-lg sm:text-xl mr-2"></i>
+            <div>
+              <p class="text-xs sm:text-sm text-gray-400">Muddati o'tgan</p>
+              <h3 id="overdueCount" class="text-lg sm:text-xl font-bold text-white">0</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:gap-8">
+        <!-- Add debt form -->
+        <div class="form-container p-6 sm:p-8 shadow-lg transform hover:scale-[1.01] transition-transform duration-300">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center">
+              <span class="gradient-bg text-white p-2 rounded-lg mr-3">
+                <i class="fas fa-plus-circle"></i>
+              </span>
+              Yangi qarz qo'shish
+            </h2>
+            <div class="text-sm text-gray-500">
+              <i class="fas fa-info-circle mr-1"></i> Barcha maydonlarni to'ldiring
+            </div>
+          </div>
+          <form id="debtForm" class="space-y-4">
+            <!-- Primary Information -->
+            <div class="space-y-3 bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="relative">
+                  <input type="text" id="name" placeholder="Ismi"
+                    class="w-full p-2.5 pl-11 text-sm border-2 border-white/10 rounded-lg bg-white/90 text-black font-medium placeholder-gray-500 focus:bg-white focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                    autofocus required>
+                  <div
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg shadow-md pointer-events-none">
+                    <i class="fas fa-user text-white text-sm"></i>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="text" id="surname" placeholder="Familiyasi"
+                    class="w-full p-2.5 pl-11 text-sm border-2 border-white/10 rounded-lg bg-white/90 text-black font-medium placeholder-gray-500 focus:bg-white focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                    required>
+                  <div
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg shadow-md pointer-events-none">
+                    <i class="fas fa-user text-white text-sm"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <input type="tel" id="phone" placeholder="Telefon raqami (901234567)"
+                  class="w-full p-2.5 pl-11 text-sm border-2 border-white/10 rounded-lg bg-white/90 text-black font-medium placeholder-gray-500 focus:bg-white focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                  pattern="[0-9]*" maxlength="9" inputmode="numeric" required>
+                <div
+                  class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-pink-500 to-red-500 rounded-lg shadow-md pointer-events-none">
+                  <i class="fas fa-phone text-white text-sm"></i>
+                </div>
+              </div>
+
+              <div class="relative">
+                <input type="text" id="amount" placeholder="Qarz miqdori (1.000.000)"
+                  class="w-full p-2.5 pl-11 pr-16 text-sm border-2 border-white/10 rounded-lg bg-white/90 text-black font-medium placeholder-gray-500 focus:bg-white focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm tracking-wide"
+                  inputmode="numeric" autocomplete="off" pattern="[0-9.,\s]*" required>
+                <div
+                  class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg shadow-md pointer-events-none">
+                  <i class="fas fa-money-bill text-white text-sm"></i>
+                </div>
+                <span
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium bg-white/50 px-2 py-0.5 rounded">so'm</span>
+              </div>
+            </div>
+
+            <!-- Dates -->
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+              <div class="relative">
+                <label class="block text-sm text-white mb-2 font-medium flex items-center gap-2">
+                  <div
+                    class="w-5 h-5 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-500 rounded-md shadow-sm">
+                    <i class="fas fa-calendar-alt text-white text-xs"></i>
+                  </div>
+                  Qarz olingan sana
+                </label>
+                <div class="relative group">
+                  <input type="date" id="debtDate"
+                    class="w-full p-2.5 text-sm border-2 border-white/10 rounded-lg bg-white/90 text-black font-medium focus:bg-white focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                    required>
+                </div>
+              </div>
+              <div class="relative">
+                <label class="block text-sm text-white mb-2 font-medium flex items-center gap-2">
+                  <div
+                    class="w-5 h-5 flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 rounded-md shadow-sm">
+                    <i class="fas fa-calendar-check text-white text-xs"></i>
+                  </div>
+                  To'lash sanasi
+                </label>
+                <div class="relative group">
+                  <input type="date" id="dueDate"
+                    class="w-full p-2.5 text-sm border-2 border-white/10 rounded-lg bg-white/90 text-black font-medium focus:bg-white focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                    required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+              class="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white p-2.5 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md flex items-center justify-center gap-2">
+              <i class="fas fa-plus-circle"></i>
+              Qo'shish (Enter)
+            </button>
+          </form>
+        </div>
+
+        <!-- Debts list -->
+        <div class="form-container p-6 sm:p-8 shadow-lg">
+          <div class="sticky top-20">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center">
+                <span class="gradient-bg text-white p-2 rounded-lg mr-3">
+                  <i class="fas fa-list"></i>
+                </span>
+                Qarzdorlar ro'yxati
+              </h2>
+              <div class="text-sm text-gray-500">
+                <button onclick="toggleFilter()"
+                  class="flex items-center hover:text-blue-600 transition-colors duration-300">
+                  <i class="fas fa-filter mr-1"></i> Filtrlash
+                </button>
+              </div>
+            </div>
+            <div class="relative group mb-6">
+              <input type="text" id="searchInput" placeholder="Qidirish... (Ctrl + F)"
+                class="w-full p-4 pl-12 text-lg border-2 rounded-xl text-white placeholder-gray-400 bg-opacity-20 backdrop-blur-sm focus:border-indigo-500 transition-colors duration-300 shadow-sm">
+              <i
+                class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-indigo-400 transition-colors duration-300"></i>
+            </div>
+            <div id="debtsList" class="space-y-4 max-h-[calc(100vh-280px)] overflow-y-auto pr-2 custom-scrollbar">
+              <!-- Debts will be loaded here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Deleted Debts Section -->
+        <div class="form-container p-6 sm:p-8 shadow-lg">
+          <div class="sticky top-20">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center">
+                <span class="gradient-bg-danger text-white p-2 rounded-lg mr-3">
+                  <i class="fas fa-trash"></i>
+                </span>
+                O'chirilgan qarzdorlar
+              </h2>
+            </div>
+            <div id="deletedDebtsList"
+              class="space-y-4 max-h-[calc(100vh-280px)] overflow-y-auto pr-2 custom-scrollbar">
+              <!-- Deleted debts will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="form-container w-full max-w-2xl p-6 sm:p-8 bg-white rounded-2xl shadow-2xl">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 flex items-center">
+            <span class="gradient-bg text-white p-2 rounded-lg mr-3">
+              <i class="fas fa-edit"></i>
+            </span>
+            Qarzni tahrirlash
+          </h2>
+          <button onclick="closeEditModal()" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <form id="editForm" class="space-y-4">
+          <!-- Primary Information -->
+          <div class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="relative">
+                <input type="text" id="editName" placeholder="Ismi"
+                  class="w-full p-2.5 pl-11 text-sm border-2 border-gray-200 rounded-lg bg-white text-black font-medium placeholder-gray-500 focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                  required>
+                <div
+                  class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg shadow-md pointer-events-none">
+                  <i class="fas fa-user text-white text-sm"></i>
+                </div>
+              </div>
+              <div class="relative">
+                <input type="text" id="editSurname" placeholder="Familiyasi"
+                  class="w-full p-2.5 pl-11 text-sm border-2 border-gray-200 rounded-lg bg-white text-black font-medium placeholder-gray-500 focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                  required>
+                <div
+                  class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg shadow-md pointer-events-none">
+                  <i class="fas fa-user text-white text-sm"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <input type="tel" id="editPhone" placeholder="Telefon raqami (901234567)"
+                class="w-full p-2.5 pl-11 text-sm border-2 border-gray-200 rounded-lg bg-white text-black font-medium placeholder-gray-500 focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm"
+                pattern="[0-9]*" maxlength="9" inputmode="numeric" required>
+              <div
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-pink-500 to-red-500 rounded-lg shadow-md pointer-events-none">
+                <i class="fas fa-phone text-white text-sm"></i>
+              </div>
+            </div>
+
+            <div class="relative">
+              <input type="text" id="editAmount" placeholder="Qarz miqdori (1.000.000)"
+                class="w-full p-2.5 pl-11 pr-16 text-sm border-2 border-gray-200 rounded-lg bg-white text-black font-medium placeholder-gray-500 focus:border-indigo-300 focus:outline-none transition-all duration-300 shadow-sm tracking-wide"
+                inputmode="numeric" autocomplete="off" pattern="[0-9.,\s]*" required>
+              <div
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg shadow-md pointer-events-none">
+                <i class="fas fa-money-bill text-white text-sm"></i>
+              </div>
+              <span
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-medium bg-gray-100 px-2 py-0.5 rounded">so'm</span>
+            </div>
+          </div>
+
+          <!-- Dates -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="relative">
+              <label class="block text-sm text-gray-700 mb-2 font-medium flex items-center gap-2">
+                <div
+                  class="w-5 h-5 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-500 rounded-md shadow-sm">
+                  <i class="fas fa-calendar-alt text-white text-xs"></i>
+                </div>
+                Qarz olingan sana
+              </label>
+              <div class="relative group">
+                <input type="date" id="editDebtDate"
+                  class="w-full p-2.5 text-sm border-2 border-gray-200 rounded-lg bg-white text-black font-medium focus:border-indigo-300 focus:outline-none transition-all duration-300"
+                  required>
+              </div>
+            </div>
+            <div class="relative">
+              <label class="block text-sm text-gray-700 mb-2 font-medium flex items-center gap-2">
+                <div
+                  class="w-5 h-5 flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 rounded-md shadow-sm">
+                  <i class="fas fa-calendar-check text-white text-xs"></i>
+                </div>
+                To'lash sanasi
+              </label>
+              <div class="relative group">
+                <input type="date" id="editDueDate"
+                  class="w-full p-2.5 text-sm border-2 border-gray-200 rounded-lg bg-white text-black font-medium focus:border-indigo-300 focus:outline-none transition-all duration-300"
+                  required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center justify-end gap-3">
+            <button type="button" onclick="resetEditForm()"
+              class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-300">
+              <i class="fas fa-undo mr-1"></i>
+              Bekor qilish
+            </button>
+            <button type="submit"
+              class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300">
+              <i class="fas fa-save mr-1"></i>
+              Saqlash
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
